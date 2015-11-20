@@ -67,12 +67,12 @@ profile::queue::rabbitmq: false
 
 ## mysql
 mysql::server::root_password: root
-#component::mysql::databases:
-#  db_name:
-#    user: dev
-#    password: dev
-#    host: localhost
-#    grant: ['ALL']
+component::mysql::databases:
+  cbase:
+    user: dev
+    password: dev
+    host: localhost
+    grant: ['ALL']
 
 ## mongodb
 # mongodb::server::smallfiles: true
@@ -169,26 +169,26 @@ hhvm::config::port: 9090  # make sure that hhvm and php5-fpm ports don't collide
 #     comment: This example will have the hostname otherhostname2
 
 ## php
-#php::extensions:
+php::extensions:
 #  curl: {}
 #  json: {}
 #  intl: {}
-#  mysql: {}
+  mysql: {}
 #  apc:
 #    package_prefix: php-
 #    settings:
 #      apc.stat: 1
 #      apc.stat_ctime: 1
-#  xdebug:
-#    settings:
-#      xdebug.max_nesting_level: 1000
-#      xdebug.remote_enable: 'On'
-#      xdebug.default_enable: 'On'
-#      xdebug.remote_connect_back: 'On'
+  xdebug:
+    settings:
+      xdebug.max_nesting_level: 1000
+      xdebug.remote_enable: 'On'
+      xdebug.default_enable: 'On'
+      xdebug.remote_connect_back: 'On'
 
 ## cli and fpm php.ini settings
-# php::settings:
-#  Date/date.timezone: Europe/Berlin
+php::settings:
+  Date/date.timezone: Europe/Berlin
 
 ## only fpm php.ini settings
 # php::fpm::settings:
