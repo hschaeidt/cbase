@@ -1,4 +1,16 @@
 services:
-#    letscode_magic.example:
-#        class: Letscode\Bundle\MagicBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    admin.category:
+        class: Letscode\Bundle\MagicBundle\Admin\CardAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\Card, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Card }
+    admin.color:
+        class: Letscode\Bundle\MagicBundle\Admin\ColorAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\Color, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Color }
+    admin.edition:
+        class: Letscode\Bundle\MagicBundle\Admin\EditionAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\Edition, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Edition }
