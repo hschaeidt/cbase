@@ -1,3 +1,6 @@
+letscode_magic:
+    resource: "@LetscodeMagicBundle/Resources/config/routing.yml"
+    prefix:   /
 
 # Sonata Configuration
 admin_area:

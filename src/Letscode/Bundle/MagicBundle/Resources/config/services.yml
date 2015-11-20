@@ -1,0 +1,4 @@
+services:
+#    letscode_magic.example:
+#        class: Letscode\Bundle\MagicBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

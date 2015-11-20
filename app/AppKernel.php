@@ -17,13 +17,15 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-            //Sonata start
+            //Sonata Bundles
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-            //Sonata end
+
+            //Letscode Bundles
+            new Letscode\Bundle\MagicBundle\LetscodeMagicBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
