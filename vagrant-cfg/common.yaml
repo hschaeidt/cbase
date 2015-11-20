@@ -2,8 +2,8 @@
 
 ## common config variables
 path: /var/www/cbase
-vhost: app-name.dev
-vhost_aliases: [ 'hhvm.app-name.dev' ]
+vhost: cbase.dev
+vhost_aliases: [ 'hhvm.cbase.dev' ]
 
 ## vagrant config
 box_name: mayflower/trusty64-puppet3    # or e.g. mayflower/centos-7.0-64-puppet3
