@@ -1,0 +1,36 @@
+Letscode\Bundle\MagicBundle\Entity\Card:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '255'
+    manyToMany:
+        colors:
+            targetEntity: Color
+            joinTable:
+                name: cards_colors
+                joinColumns:
+                    cardId:
+                        referencedColumnName: id
+                inverseJoinColums:
+                    colorId:
+                        referencedColumnName: id
+        editions:
+            targetEntity: Edition
+            joinTable:
+                name: cards_editions
+                joinColumns:
+                    cardId:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    editionId:
+                        referencedColumnName: id
+
+    lifecycleCallbacks: {  }
