@@ -30,6 +30,7 @@ cd /var/www/cbase
 composer install
 php app/console cache:clear
 php app/console assets:install
+php app/console doctrine:schema:create
 ```
 
 Now cbase is available under http://cbase.dev/admin
