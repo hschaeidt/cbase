@@ -17,15 +17,21 @@ class CardAdmin extends Admin
         ->add(
             'manaCosts', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\ManaCost',
-                'expanded' => true,
+                'expanded' => false,
                 'by_reference' => false,
                 'multiple' => true
+        ))
+        ->add('cardTypes', 'sonata_type_model', array(
+            'class' => 'Letscode\Bundle\MagicBundle\Entity\CardType',
+            'expanded' => false,
+            'by_reference' => false,
+            'multiple' => true
         ))
         ->add(
             'colors', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\Color',
                 'property' => 'name',
-                'expanded' => true,
+                'expanded' => false,
                 'by_reference' => false,
                 'multiple' => true
             )
@@ -33,7 +39,7 @@ class CardAdmin extends Admin
             'editions', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\Edition',
                 'property' => 'name',
-                'expanded' => true,
+                'expanded' => false,
                 'by_reference' => false,
                 'multiple' => true
             )

@@ -35,6 +35,11 @@ class Card
     private $manaCosts;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $cardTypes;
+
+    /**
      * Get id
      *
      * @return integer
@@ -219,6 +224,40 @@ class Card
     public function removeManaCost(\Letscode\Bundle\MagicBundle\Entity\ManaCost $manaCost)
     {
         $this->manaCosts->removeElement($manaCost);
+    }
+
+    /**
+     * Add cardType
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\CardType $cardType
+     *
+     * @return Card
+     */
+    public function addCardType(\Letscode\Bundle\MagicBundle\Entity\CardType $cardType)
+    {
+        $this->cardTypes[] = $cardType;
+
+        return $this;
+    }
+
+    /**
+     * Remove cardType
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\CardType $cardType
+     */
+    public function removeCardType(\Letscode\Bundle\MagicBundle\Entity\CardType $cardType)
+    {
+        $this->cardTypes->removeElement($cardType);
+    }
+
+    /**
+     * Get cardTypes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCardTypes()
+    {
+        return $this->cardTypes;
     }
 
     /**

@@ -47,4 +47,15 @@ Letscode\Bundle\MagicBundle\Entity\Card:
                 inverseJoinColumns:
                     manaCostId:
                         referencedColumnName: id
+        cardTypes:
+            targetEntity: CardType
+            joinTable:
+                name: cards_cardtypes
+                joinColumns:
+                    cardId:
+                        referenceColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    cartTypeId:
+                        referenceColumnName: id
     lifecycleCallbacks: {  }
