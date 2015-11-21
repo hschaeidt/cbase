@@ -14,7 +14,7 @@ Letscode\Bundle\MagicBundle\Entity\ManaCost:
     manyToOne:
         color:
             targetEntity: Color
-            inversedBy: colors
+            inversedBy: manaCosts
             cascade: ["persist", "merge"]
             joinColumn:
                 name: colorId
