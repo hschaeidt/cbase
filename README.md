@@ -25,12 +25,22 @@ vagrant up
 Now a few manual steps have to be done
 
 ```
+# connect to virtual-machine
 vagrant ssh
+
+# navigate to application base directory
 cd /var/www/cbase
+
+# installing dependencies
 composer install
 php app/console cache:clear
 php app/console assets:install
 php app/console doctrine:schema:create
+# run this command instead if the schema already exists
+# php app/console doctrine:update --force
+
+# setting up super-admin user
+php app/console fos:user:create --super-admin
 ```
 
 Now cbase is available under http://cbase.dev/admin

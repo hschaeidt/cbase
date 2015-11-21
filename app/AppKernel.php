@@ -24,6 +24,12 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
 
+            //Sonata user Bundles
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+
             //Letscode Bundles
             new Letscode\Bundle\MagicBundle\LetscodeMagicBundle(),
         );
