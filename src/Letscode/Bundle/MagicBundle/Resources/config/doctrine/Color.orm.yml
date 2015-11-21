@@ -11,4 +11,9 @@ Letscode\Bundle\MagicBundle\Entity\Color:
         name:
             type: string
             length: '255'
+    oneToMany:
+        manaCosts:
+            targetEntity: ManaCost
+            mappedBy: color
+            cascade: ["persist"]
     lifecycleCallbacks: {  }

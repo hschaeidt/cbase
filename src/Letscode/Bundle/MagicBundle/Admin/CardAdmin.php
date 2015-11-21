@@ -11,9 +11,18 @@ class CardAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('name', 'text')
+        $formMapper->with("General")
+        ->add('name', 'text')
+        ->add('convertedManaCost', 'integer')
         ->add(
-            'colors', 'entity', array(
+            'manaCosts', 'sonata_type_model', array(
+                'class' => 'Letscode\Bundle\MagicBundle\Entity\ManaCost',
+                'expanded' => true,
+                'by_reference' => false,
+                'multiple' => true
+        ))
+        ->add(
+            'colors', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\Color',
                 'property' => 'name',
                 'expanded' => true,
@@ -21,14 +30,14 @@ class CardAdmin extends Admin
                 'multiple' => true
             )
         )->add(
-            'editions', 'entity', array(
+            'editions', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\Edition',
                 'property' => 'name',
                 'expanded' => true,
                 'by_reference' => false,
                 'multiple' => true
             )
-        );
+        )->end();
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

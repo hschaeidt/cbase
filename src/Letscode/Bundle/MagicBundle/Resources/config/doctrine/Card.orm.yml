@@ -11,6 +11,8 @@ Letscode\Bundle\MagicBundle\Entity\Card:
         name:
             type: string
             length: '255'
+        convertedManaCost:
+            type: integer
     manyToMany:
         colors:
             targetEntity: Color
@@ -19,6 +21,7 @@ Letscode\Bundle\MagicBundle\Entity\Card:
                 joinColumns:
                     cardId:
                         referencedColumnName: id
+                        onDelete: CASCADE
                 inverseJoinColums:
                     colorId:
                         referencedColumnName: id
@@ -29,8 +32,19 @@ Letscode\Bundle\MagicBundle\Entity\Card:
                 joinColumns:
                     cardId:
                         referencedColumnName: id
+                        onDelete: CASCADE
                 inverseJoinColumns:
                     editionId:
                         referencedColumnName: id
-
+        manaCosts:
+            targetEntity: ManaCost
+            joinTable:
+                name: cards_manacosts
+                joinColumns:
+                    cardId:
+                        referencedColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    manaCostId:
+                        referencedColumnName: id
     lifecycleCallbacks: {  }

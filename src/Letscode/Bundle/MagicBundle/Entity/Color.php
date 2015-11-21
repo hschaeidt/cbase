@@ -17,6 +17,18 @@ class Color
      */
     private $name;
 
+    /**
+     * @var \Letscode\Bundle\MagicBundle\Entity\ManaCost
+     */
+    private $manaCosts;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->manaCosts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -53,6 +65,54 @@ class Color
     }
 
     /**
+     * Set manaCosts
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\ManaCost $manaCosts
+     *
+     * @return Color
+     */
+    public function setManaCosts(\Letscode\Bundle\MagicBundle\Entity\ManaCost $manaCosts = null)
+    {
+        $this->manaCosts = $manaCosts;
+
+        return $this;
+    }
+
+    /**
+     * Get manaCosts
+     *
+     * @return \Letscode\Bundle\MagicBundle\Entity\ManaCost
+     */
+    public function getManaCosts()
+    {
+        return $this->manaCosts;
+    }
+
+    /**
+     * Add manaCost
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\ManaCost $manaCost
+     *
+     * @return Color
+     */
+    public function addManaCost(\Letscode\Bundle\MagicBundle\Entity\ManaCost $manaCost)
+    {
+        $this->manaCosts[] = $manaCost;
+
+        return $this;
+    }
+
+    /**
+     * Remove manaCost
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\ManaCost $manaCost
+     */
+    public function removeManaCost(\Letscode\Bundle\MagicBundle\Entity\ManaCost $manaCost)
+    {
+        $this->manaCosts->removeElement($manaCost);
+    }
+
+    /**
      * @return string
      */
     public function __toString()
@@ -60,4 +120,3 @@ class Color
         return $this->name;
     }
 }
-

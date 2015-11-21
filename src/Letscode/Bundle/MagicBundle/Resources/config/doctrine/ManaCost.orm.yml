@@ -1,0 +1,22 @@
+Letscode\Bundle\MagicBundle\Entity\ManaCost:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        sum:
+            type: integer
+            length: null
+    manyToOne:
+        color:
+            targetEntity: Color
+            inversedBy: colors
+            cascade: ["persist", "merge"]
+            joinColumn:
+                name: colorId
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

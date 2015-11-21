@@ -1,9 +1,14 @@
 services:
-    admin.category:
+    admin.card:
         class: Letscode\Bundle\MagicBundle\Admin\CardAdmin
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Card, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Card }
+    admin.manacost:
+        class: Letscode\Bundle\MagicBundle\Admin\ManaCostAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\ManaCost, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: ManaCost }
     admin.color:
         class: Letscode\Bundle\MagicBundle\Admin\ColorAdmin
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Color, ~]
