@@ -40,6 +40,16 @@ class Card
     private $cardTypes;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $effects;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $attributes;
+
+    /**
      * Get id
      *
      * @return integer
@@ -258,6 +268,74 @@ class Card
     public function getCardTypes()
     {
         return $this->cardTypes;
+    }
+
+    /**
+     * Add effect
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\Effect $effect
+     *
+     * @return Card
+     */
+    public function addEffect(\Letscode\Bundle\MagicBundle\Entity\Effect $effect)
+    {
+        $this->effects[] = $effect;
+
+        return $this;
+    }
+
+    /**
+     * Remove effect
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\Effect $effect
+     */
+    public function removeEffect(\Letscode\Bundle\MagicBundle\Entity\Effect $effect)
+    {
+        $this->effects->removeElement($effect);
+    }
+
+    /**
+     * Get effects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEffects()
+    {
+        return $this->effects;
+    }
+
+    /**
+     * Add attribute
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\Attribute $attribute
+     *
+     * @return Card
+     */
+    public function addAttribute(\Letscode\Bundle\MagicBundle\Entity\Attribute $attribute)
+    {
+        $this->attributes[] = $attribute;
+
+        return $this;
+    }
+
+    /**
+     * Remove attribute
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\Attribute $attribute
+     */
+    public function removeAttribute(\Letscode\Bundle\MagicBundle\Entity\Attribute $attribute)
+    {
+        $this->attributes->removeElement($attribute);
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
     }
 
     /**

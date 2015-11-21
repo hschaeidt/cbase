@@ -56,6 +56,28 @@ Letscode\Bundle\MagicBundle\Entity\Card:
                         referenceColumnName: id
                         onDelete: CASCADE
                 inverseJoinColumns:
-                    cartTypeId:
+                    cardTypeId:
+                        referenceColumnName: id
+        attributes:
+            targetEntity: Attribute
+            joinTable:
+                name: cards_attributes
+                joinColumns:
+                    cardId:
+                        referenceColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    attributeId:
+                        referenceColumnName: id
+        effects:
+            targetEntity: Effect
+            joinTable:
+                name: cards_effects
+                joinColumns:
+                    cardId:
+                        referenceColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    effectId:
                         referenceColumnName: id
     lifecycleCallbacks: {  }

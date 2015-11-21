@@ -19,8 +19,18 @@ services:
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Edition, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Edition }
-    admin.carttype:
+    admin.cardtype:
         class: Letscode\Bundle\MagicBundle\Admin\CardTypeAdmin
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\CardType, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: CardType }
+    admin.effect:
+        class: Letscode\Bundle\MagicBundle\Admin\EffectAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\Effect, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Effect }
+    admin.attribute:
+        class: Letscode\Bundle\MagicBundle\Admin\AttributeAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\Attribute, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Attribute }

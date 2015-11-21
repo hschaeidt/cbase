@@ -1,0 +1,37 @@
+Letscode\Bundle\MagicBundle\Entity\Effect:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '255'
+    manyToMany:
+        attributes:
+            targetEntity: Attribute
+            joinTable:
+                name: effects_attributes
+                joinColumns:
+                    effectId:
+                        referencedColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColums:
+                    attributeId:
+                        referencedColumnName: id
+        manaCosts:
+            targetEntity: ManaCost
+            joinTable:
+                name: effects_manacosts
+                joinColumns:
+                    effectId:
+                        referencedColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColums:
+                    manaCostId:
+                        referencedColumnName: id
+    lifecycleCallbacks: {  }

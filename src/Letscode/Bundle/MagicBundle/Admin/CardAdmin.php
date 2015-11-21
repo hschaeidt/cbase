@@ -35,7 +35,28 @@ class CardAdmin extends Admin
                 'by_reference' => false,
                 'multiple' => true
             )
-        )->add(
+        )
+        ->add(
+            'attributes', 'sonata_type_model', array(
+                'class' => 'Letscode\Bundle\MagicBundle\Entity\Attribute',
+                'property' => 'name',
+                'expanded' => false,
+                'by_reference' => false,
+                'multiple' => true,
+                'required' => false
+            )
+        )
+        ->add(
+            'effects', 'sonata_type_model', array(
+                'class' => 'Letscode\Bundle\MagicBundle\Entity\Effect',
+                'property' => 'name',
+                'expanded' => false,
+                'by_reference' => false,
+                'multiple' => true,
+                'required' => false
+            )
+        )
+        ->add(
             'editions', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\Edition',
                 'property' => 'name',

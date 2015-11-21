@@ -1,0 +1,20 @@
+<?php
+
+namespace Letscode\Bundle\MagicBundle\Admin;
+
+use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+
+class AttributeAdmin extends Admin
+{
+    public function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper->add('name', 'text')->end();
+    }
+
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper->addIdentifier('name');
+    }
+}
