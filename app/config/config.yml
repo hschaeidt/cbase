@@ -70,12 +70,8 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        entity_managers:
-            default:
-                mappings:
-                    ApplicationSonataUserBundle: ~
-                    SonataUserBundle: ~
-                    FOSUserBundle: ~ # If SonataUserBundle extends it
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
