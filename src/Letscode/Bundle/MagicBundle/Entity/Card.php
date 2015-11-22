@@ -50,6 +50,16 @@ class Card
     private $attributes;
 
     /**
+     * @var integer
+     */
+    private $power;
+
+    /**
+     * @var integer
+     */
+    private $toughness;
+
+    /**
      * Get id
      *
      * @return integer
@@ -336,6 +346,54 @@ class Card
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * Set power
+     *
+     * @param integer $power
+     *
+     * @return Card
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    /**
+     * Get power
+     *
+     * @return integer
+     */
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    /**
+     * Set toughness
+     *
+     * @param integer $toughness
+     *
+     * @return Card
+     */
+    public function setToughness($toughness)
+    {
+        $this->toughness = $toughness;
+
+        return $this;
+    }
+
+    /**
+     * Get toughness
+     *
+     * @return integer
+     */
+    public function getToughness()
+    {
+        return $this->toughness;
     }
 
     /**

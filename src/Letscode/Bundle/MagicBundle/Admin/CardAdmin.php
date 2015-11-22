@@ -64,7 +64,10 @@ class CardAdmin extends Admin
                 'by_reference' => false,
                 'multiple' => true
             )
-        )->end();
+        )->end()
+        ->with('Creature')
+            ->add('power', 'integer', array('required' => false))
+            ->add('toughness', 'integer', array('required' => false));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

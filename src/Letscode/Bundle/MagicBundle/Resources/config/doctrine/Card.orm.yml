@@ -13,6 +13,10 @@ Letscode\Bundle\MagicBundle\Entity\Card:
             length: '255'
         convertedManaCost:
             type: integer
+        power:
+            type: integer
+        toughness:
+            type: integer
     manyToMany:
         colors:
             targetEntity: Color
