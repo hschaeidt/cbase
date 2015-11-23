@@ -2,6 +2,8 @@ services:
     admin.card:
         class: Letscode\Bundle\MagicBundle\Admin\CardAdmin
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Card, ~]
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Card }
     admin.manacost:
