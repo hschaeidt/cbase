@@ -3,7 +3,7 @@ services:
         class: Letscode\Bundle\MagicBundle\Admin\CardAdmin
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Card, ~]
         calls:
-            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+            - [setMetadataFactory, ["@magic.card.metadata_factory"]]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Card }
     admin.manacost:
@@ -36,3 +36,6 @@ services:
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Attribute, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Attribute }
+    magic.card.metadata_factory:
+        class: Letscode\Bundle\MagicBundle\Model\Factory\CardMetadataFactory
+        arguments: ["@doctrine.orm.entity_manager"]

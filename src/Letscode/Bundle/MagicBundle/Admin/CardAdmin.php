@@ -2,7 +2,7 @@
 
 namespace Letscode\Bundle\MagicBundle\Admin;
 
-use Letscode\Bundle\MagicBundle\Entity\Attribute;
+use Letscode\Bundle\MagicBundle\Model\Factory\CardMetadataFactory;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -11,32 +11,15 @@ use Sonata\AdminBundle\Model\ModelManagerInterface;
 
 class CardAdmin extends Admin
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $entityManager;
+    /** @var CardMetadataFactory */
+    protected $metadataFactory;
 
     /**
-     * @var array
+     * @param CardMetadataFactory $metadataFactory
      */
-    private $descriptionPatterns = [
-        '/put.*[^\+]\d\/[^\+]\d.*token/i' => ['Creature', 'Token']
-    ];
-
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    public function getEntityManager()
+    public function setMetadataFactory($metadataFactory)
     {
-        return $this->entityManager;
-    }
-
-    /**
-     * @param \Doctrine\ORM\EntityManager $entityManager
-     */
-    public function setEntityManager($entityManager)
-    {
-        $this->entityManager = $entityManager;
+        $this->metadataFactory = $metadataFactory;
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -103,35 +86,17 @@ class CardAdmin extends Admin
 
     /**
      * @inheritdoc
+     * @param Card
      */
-    public function prePersist($object)
+    public function prePersist($card)
     {
-        $result = null;
-        $guessedAttribute = '';
-        $em = $this->getEntityManager();
-        $description = $object->getDescription();
+        $metaData = $this->metadataFactory->create($card);
+        $metaData->parse()->attachToCard();
+    }
 
-        foreach ($this->descriptionPatterns as $pattern => $attributes) {
-            //if (preg_match($pattern, $description) == 1) {
-                foreach ($attributes as $attribute) {
-                    $guessedAttribute = $attribute;
-
-                    $result = $em->getRepository('LetscodeMagicBundle:Attribute')->findOneBy(array(
-                        'name' => $guessedAttribute
-                    ));
-
-                    if ($result == null) {
-                        $result = new Attribute();
-                        $result->setName($guessedAttribute);
-                        $em->persist($result);
-                    }
-
-                    if (!$object->hasAttribute($result)) {
-                        $object->addAttribute($result);
-                    }
-                }
-            //}
-        }
+    public function preUpdate($card)
+    {
+        $this->prePersist($card);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

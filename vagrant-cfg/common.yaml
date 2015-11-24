@@ -170,15 +170,15 @@ hhvm::config::port: 9090  # make sure that hhvm and php5-fpm ports don't collide
 
 ## php
 php::extensions:
-#  curl: {}
-#  json: {}
-#  intl: {}
+  curl: {}
+  json: {}
+  intl: {}
   mysql: {}
-#  apc:
-#    package_prefix: php-
-#    settings:
-#      apc.stat: 1
-#      apc.stat_ctime: 1
+  apc:
+    package_prefix: php-
+    settings:
+      apc.stat: 1
+      apc.stat_ctime: 1
   xdebug:
     settings:
       xdebug.max_nesting_level: 1000
