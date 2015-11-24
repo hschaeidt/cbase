@@ -5,6 +5,7 @@ namespace Letscode\Bundle\MagicBundle\Model;
 use \Doctrine\ORM\EntityManager;
 use Letscode\Bundle\MagicBundle\Entity\Attribute;
 use Letscode\Bundle\MagicBundle\Entity\Card;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToArrayTransformer;
 
 class CardMetadata
 {
@@ -36,7 +37,12 @@ class CardMetadata
      * @var array
      */
     private $descriptionPatterns = [
-        '/put.*[^\+]\d\/\d.*token/i' => ['Creature', 'Token']
+        '/put.*[^\+]\d\/\d.*token/i' => [Attribute::CREATURE, Attribute::TOKEN],
+        '/rally.\-/i' => [Attribute::RALLY],
+        '/(^target.*)|(.*?\..target)/i' => [Attribute::ENHANCEMENT],
+        '/(^prevent.*)|(.*?\..prevent)/i' => [Attribute::PROTECTION],
+        '/destroy/i' => [Attribute::DESTRUCTION],
+        '/awaken.\d/i' => [Attribute::AWAKEN],
     ];
 
     /**

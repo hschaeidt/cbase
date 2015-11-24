@@ -7,6 +7,15 @@ namespace Letscode\Bundle\MagicBundle\Entity;
  */
 class Attribute
 {
+    const TOKEN = 'Token';
+    const CREATURE = 'Creature';
+    const TRAMPLE = 'Trample';
+    const RALLY = 'Rally';
+    const ENHANCEMENT = 'Enhancement';
+    const PROTECTION = 'Protection';
+    const DESTRUCTION = 'Destruction';
+    const AWAKEN = 'Awaken';
+
     /**
      * @var integer
      */
