@@ -16,6 +16,11 @@ services:
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Color, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Color }
+    admin.rarity:
+        class: Letscode\Bundle\MagicBundle\Admin\RarityAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\Rarity, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Edition }
     admin.edition:
         class: Letscode\Bundle\MagicBundle\Admin\EditionAdmin
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Edition, ~]

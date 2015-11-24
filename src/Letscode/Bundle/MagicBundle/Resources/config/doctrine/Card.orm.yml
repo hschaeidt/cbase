@@ -88,4 +88,11 @@ Letscode\Bundle\MagicBundle\Entity\Card:
                 inverseJoinColumns:
                     effectId:
                         referenceColumnName: id
+    oneToOne:
+        rarity:
+            targetEntity: Rarity
+            joinColumn:
+                name: rarityId
+                referencedColumnName: id
+
     lifecycleCallbacks: {  }

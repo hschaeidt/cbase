@@ -1,0 +1,14 @@
+Letscode\Bundle\MagicBundle\Entity\Rarity:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: null
+    lifecycleCallbacks: {  }

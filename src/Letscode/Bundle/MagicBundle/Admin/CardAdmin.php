@@ -71,6 +71,15 @@ class CardAdmin extends Admin
             )
         )
         ->add(
+            'rarity', 'sonata_type_model', array(
+                'class' => 'Letscode\Bundle\MagicBundle\Entity\Rarity',
+                'property' => 'name',
+                'expanded' => false,
+                'by_reference' => false,
+                'multiple' => false
+            )
+        )
+        ->add(
             'editions', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\Edition',
                 'property' => 'name',

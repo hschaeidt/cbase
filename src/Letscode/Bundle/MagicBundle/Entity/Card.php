@@ -1,6 +1,7 @@
 <?php
 
 namespace Letscode\Bundle\MagicBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -63,6 +64,11 @@ class Card
      * @var string
      */
     private $description;
+
+    /**
+     * @var \Letscode\Bundle\MagicBundle\Entity\Rarity
+     */
+    private $rarity;
 
     /**
      * Get id
@@ -362,7 +368,6 @@ class Card
         if (is_object($this->attributes) && $this->attributes->contains($attribute)) {
             return true;
         }
-
         return false;
     }
 
@@ -436,6 +441,30 @@ class Card
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set rarity
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\Rarity $rarity
+     *
+     * @return Card
+     */
+    public function setRarity(\Letscode\Bundle\MagicBundle\Entity\Rarity $rarity = null)
+    {
+        $this->rarity = $rarity;
+
+        return $this;
+    }
+
+    /**
+     * Get rarity
+     *
+     * @return \Letscode\Bundle\MagicBundle\Entity\Rarity
+     */
+    public function getRarity()
+    {
+        return $this->rarity;
     }
 
     /**

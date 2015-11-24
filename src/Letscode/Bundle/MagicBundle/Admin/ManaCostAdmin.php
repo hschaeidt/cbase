@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hschaeidt
- * Date: 20.11.15
- * Time: 20:01
- */
 
 namespace Letscode\Bundle\MagicBundle\Admin;
 

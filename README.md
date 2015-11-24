@@ -37,7 +37,7 @@ php app/console cache:clear
 php app/console assets:install
 php app/console doctrine:schema:create
 # run this command instead if the schema already exists
-# php app/console doctrine:update --force
+# php app/console doctrine:schema:update --force
 
 # setting up super-admin user
 php app/console fos:user:create --super-admin
