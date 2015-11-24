@@ -11,12 +11,16 @@ Letscode\Bundle\MagicBundle\Entity\Card:
         name:
             type: string
             length: '255'
+        description:
+            type: text
         convertedManaCost:
             type: integer
         power:
             type: integer
+            nullable: true
         toughness:
             type: integer
+            nullable: true
     manyToMany:
         colors:
             targetEntity: Color

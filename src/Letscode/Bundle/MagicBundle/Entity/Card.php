@@ -60,6 +60,11 @@ class Card
     private $toughness;
 
     /**
+     * @var string
+     */
+    private $description;
+
+    /**
      * Get id
      *
      * @return integer
@@ -349,6 +354,19 @@ class Card
     }
 
     /**
+     * @param Attribute $attribute
+     * @return bool
+     */
+    public function hasAttribute(\Letscode\Bundle\MagicBundle\Entity\Attribute $attribute)
+    {
+        if (is_object($this->attributes) && $this->attributes->contains($attribute)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Set power
      *
      * @param integer $power
@@ -394,6 +412,30 @@ class Card
     public function getToughness()
     {
         return $this->toughness;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Card
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

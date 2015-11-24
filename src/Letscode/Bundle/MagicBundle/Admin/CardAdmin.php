@@ -2,17 +2,31 @@
 
 namespace Letscode\Bundle\MagicBundle\Admin;
 
+use Letscode\Bundle\MagicBundle\Model\Factory\CardMetadataFactory;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Model\ModelManagerInterface;
 
 class CardAdmin extends Admin
 {
+    /** @var CardMetadataFactory */
+    protected $metadataFactory;
+
+    /**
+     * @param CardMetadataFactory $metadataFactory
+     */
+    public function setMetadataFactory($metadataFactory)
+    {
+        $this->metadataFactory = $metadataFactory;
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->with("General")
         ->add('name', 'text')
+        ->add('description', 'text')
         ->add('convertedManaCost', 'integer')
         ->add(
             'manaCosts', 'sonata_type_model', array(
@@ -68,6 +82,21 @@ class CardAdmin extends Admin
         ->with('Creature')
             ->add('power', 'integer', array('required' => false))
             ->add('toughness', 'integer', array('required' => false));
+    }
+
+    /**
+     * @inheritdoc
+     * @param Card
+     */
+    public function prePersist($card)
+    {
+        $metaData = $this->metadataFactory->create($card);
+        $metaData->parse()->attachToCard();
+    }
+
+    public function preUpdate($card)
+    {
+        $this->prePersist($card);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
