@@ -26,7 +26,7 @@ class CardAdmin extends Admin
     {
         $formMapper->with("General")
         ->add('name', 'text')
-        ->add('description', 'text')
+        ->add('description', 'textarea')
         ->add('convertedManaCost', 'integer')
         ->add(
             'manaCosts', 'sonata_type_model', array(

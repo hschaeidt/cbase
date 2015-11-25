@@ -7,14 +7,57 @@ namespace Letscode\Bundle\MagicBundle\Entity;
  */
 class Attribute
 {
+    const ACTIVE = 'Active';
+    const PASSIVE = 'Passive';
+    # Passives, actives
+    # Permanent effects applied to cards without the need for activation or interaction.
+    # Some cards may also assign passives to other cards (temporary), in this case we treat it as an active.
+    const VIGILANCE = 'Vigilance';
+    const MENACE = 'Menace';
+    const HASTE = 'Haste';
+    const FIRST_STRIKE = 'First strike';
+    const FLYING = 'Flying';
+    const TRAMPLE = 'Trample';
+
+    # Markers
+    # Used for search and filtering
     const TOKEN = 'Token';
     const CREATURE = 'Creature';
-    const TRAMPLE = 'Trample';
     const RALLY = 'Rally';
     const ENHANCEMENT = 'Enhancement';
     const PROTECTION = 'Protection';
     const DESTRUCTION = 'Destruction';
     const AWAKEN = 'Awaken';
+    const LANDFALL = 'Landfall';
+    const SACRIFICE = 'Sacrifice';
+
+    /**
+     * Gets a list of all passive attributes (effects)
+     *
+     * @return array
+     */
+    public static function getPassives()
+    {
+        return [
+            static::MENACE,
+            static::HASTE,
+            static::VIGILANCE,
+            static::FLYING,
+            static::FIRST_STRIKE,
+        ];
+    }
+
+    /**
+     * Transforms a attribute constant into the regex format.
+     * Useful for parsing descriptions for attributes.
+     *
+     * @param $const
+     * @return string
+     */
+    public static function constToRegEx($const)
+    {
+        return strtolower(str_replace(' ', '\s', $const));
+    }
 
     /**
      * @var integer

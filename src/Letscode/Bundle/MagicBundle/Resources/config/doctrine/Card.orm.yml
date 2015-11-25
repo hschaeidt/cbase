@@ -88,7 +88,7 @@ Letscode\Bundle\MagicBundle\Entity\Card:
                 inverseJoinColumns:
                     effectId:
                         referenceColumnName: id
-    oneToOne:
+    manyToOne:
         rarity:
             targetEntity: Rarity
             joinColumn:

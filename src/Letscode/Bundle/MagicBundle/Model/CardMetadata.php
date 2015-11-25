@@ -5,7 +5,6 @@ namespace Letscode\Bundle\MagicBundle\Model;
 use \Doctrine\ORM\EntityManager;
 use Letscode\Bundle\MagicBundle\Entity\Attribute;
 use Letscode\Bundle\MagicBundle\Entity\Card;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToArrayTransformer;
 
 class CardMetadata
 {
@@ -27,23 +26,10 @@ class CardMetadata
     private $em;
 
     /**
-     * Card object description text
-     * @var string
-     */
-    private $description;
-
-    /**
      * Regex search patterns with mapped resulting attributes
      * @var array
      */
-    private $descriptionPatterns = [
-        '/put.*[^\+]\d\/\d.*token/i' => [Attribute::CREATURE, Attribute::TOKEN],
-        '/rally.\-/i' => [Attribute::RALLY],
-        '/(^target.*)|(.*?\..target)/i' => [Attribute::ENHANCEMENT],
-        '/(^prevent.*)|(.*?\..prevent)/i' => [Attribute::PROTECTION],
-        '/destroy/i' => [Attribute::DESTRUCTION],
-        '/awaken.\d/i' => [Attribute::AWAKEN],
-    ];
+    private $descriptionPatterns = [];
 
     /**
      * CardMetaData constructor.
@@ -54,16 +40,7 @@ class CardMetadata
     {
         $this->card = $card;
         $this->em = $em;
-        $this->description = $this->card->getDescription();
-    }
-
-    /**
-     * Sets the cards description text
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
+        $this->initSearchPatterns();
     }
 
     /**
@@ -74,7 +51,7 @@ class CardMetadata
     public function parse()
     {
         foreach ($this->descriptionPatterns as $pattern => $attributes) {
-            if (preg_match($pattern, $this->description) == 1) {
+            if (preg_match($pattern, $this->card->getDescription()) == 1) {
                 $this->attributes = array_merge($this->attributes, $attributes);
             }
         }
@@ -109,5 +86,34 @@ class CardMetadata
         }
 
         return $this->card;
+    }
+
+    /**
+     * Initializes the search pattern dynamically for all card descriptions to attribute mapping.
+     */
+    protected function initSearchPatterns()
+    {
+        $this->descriptionPatterns = array_merge($this->descriptionPatterns, [
+            // Put a 3/3 token creature ...
+            '/put.*[^\+]\d\/\d.*token/i' => [Attribute::CREATURE, Attribute::TOKEN],
+            '/rally.\-/i' => [Attribute::RALLY],
+            '/(^target.*)|(.*?\..target)/i' => [Attribute::ENHANCEMENT],
+            '/gets?\s\+\d\/\+\d/i' => [Attribute::ENHANCEMENT],
+            '/(^prevent.*)|(.*?\..prevent)/i' => [Attribute::PROTECTION],
+            '/destroy/i' => [Attribute::DESTRUCTION],
+            '/sacrifice/i' => [Attribute::SACRIFICE],
+            '/awaken.\d/i' => [Attribute::AWAKEN],
+            '/landfall.\-/i' => [Attribute::LANDFALL],
+        ]);
+
+        // Insert passives dynamically
+        foreach (Attribute::getPassives() as $attribute) {
+            $this->descriptionPatterns = array_merge($this->descriptionPatterns, [
+                // If the card has the attribute itself on it, it is considered as passive attribute
+                '/(^|,\s)'. Attribute::constToRegEx($attribute) .'/i' => [$attribute, Attribute::PASSIVE],
+                // If the card grants the attribute temporary to another card or itself it is considered as active attribute
+                '/gains?\s'. Attribute::constToRegEx($attribute) .'/i' => [$attribute, Attribute::ACTIVE]
+            ]);
+        }
     }
 }
