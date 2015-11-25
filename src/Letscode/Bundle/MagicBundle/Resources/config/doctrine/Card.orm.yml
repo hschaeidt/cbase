@@ -13,6 +13,8 @@ Letscode\Bundle\MagicBundle\Entity\Card:
             length: '255'
         description:
             type: text
+        flavorText:
+            type: text
         convertedManaCost:
             type: integer
         power:
@@ -65,6 +67,17 @@ Letscode\Bundle\MagicBundle\Entity\Card:
                         onDelete: CASCADE
                 inverseJoinColumns:
                     cardTypeId:
+                        referenceColumnName: id
+        cardSubTypes:
+            targetEntity: CardSubType
+            joinTable:
+                name: cards_cardsubtypes
+                joinColumns:
+                    cardId:
+                        referenceColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    cardSubTypeId:
                         referenceColumnName: id
         attributes:
             targetEntity: Attribute

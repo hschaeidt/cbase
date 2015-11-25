@@ -1,4 +1,4 @@
-Letscode\Bundle\MagicBundle\Entity\Rarity:
+Letscode\Bundle\MagicBundle\Entity\CardSubType:
     type: entity
     table: null
     id:

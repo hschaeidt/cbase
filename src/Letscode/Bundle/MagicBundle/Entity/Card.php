@@ -71,6 +71,16 @@ class Card
     private $rarity;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $cardSubTypes;
+
+    /**
+     * @var string
+     */
+    private $flavorText;
+
+    /**
      * Get id
      *
      * @return integer
@@ -465,6 +475,65 @@ class Card
     public function getRarity()
     {
         return $this->rarity;
+    }
+
+    /**
+     * Add cardSubType
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\CardSubType $cardSubType
+     *
+     * @return Card
+     */
+    public function addCardSubType(\Letscode\Bundle\MagicBundle\Entity\CardSubType $cardSubType)
+    {
+        $this->cardSubTypes[] = $cardSubType;
+
+        return $this;
+    }
+
+    /**
+     * Remove cardSubType
+     *
+     * @param \Letscode\Bundle\MagicBundle\Entity\CardSubType $cardSubType
+     */
+    public function removeCardSubType(\Letscode\Bundle\MagicBundle\Entity\CardSubType $cardSubType)
+    {
+        $this->cardSubTypes->removeElement($cardSubType);
+    }
+
+    /**
+     * Get cardSubTypes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCardSubTypes()
+    {
+        return $this->cardSubTypes;
+    }
+
+
+    /**
+     * Set flavorText
+     *
+     * @param string $flavorText
+     *
+     * @return Card
+     */
+    public function setFlavorText($flavorText)
+    {
+        $this->flavorText = $flavorText;
+
+        return $this;
+    }
+
+    /**
+     * Get flavorText
+     *
+     * @return string
+     */
+    public function getFlavorText()
+    {
+        return $this->flavorText;
     }
 
     /**

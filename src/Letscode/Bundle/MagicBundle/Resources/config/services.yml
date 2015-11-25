@@ -31,6 +31,11 @@ services:
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\CardType, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: CardType }
+    admin.cardsubtype:
+        class: Letscode\Bundle\MagicBundle\Admin\CardSubTypeAdmin
+        arguments: [~, Letscode\Bundle\MagicBundle\Entity\CardSubType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: CardType }
     admin.effect:
         class: Letscode\Bundle\MagicBundle\Admin\EffectAdmin
         arguments: [~, Letscode\Bundle\MagicBundle\Entity\Effect, ~]

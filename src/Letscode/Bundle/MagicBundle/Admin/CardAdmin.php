@@ -26,8 +26,8 @@ class CardAdmin extends Admin
     {
         $formMapper->with("General")
         ->add('name', 'text')
-        ->add('description', 'textarea')
-        ->add('convertedManaCost', 'integer')
+        ->add('description', 'textarea', array('required' => false))
+        ->add('flavorText', 'textarea', array('required' => false))
         ->add(
             'manaCosts', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\ManaCost',
@@ -41,6 +41,13 @@ class CardAdmin extends Admin
             'by_reference' => false,
             'multiple' => true
         ))
+        ->add('cardSubTypes', 'sonata_type_model', array(
+            'class' => 'Letscode\Bundle\MagicBundle\Entity\CardSubType',
+            'expanded' => false,
+            'by_reference' => false,
+            'multiple' => true,
+            'required' => false
+        ))
         ->add(
             'colors', 'sonata_type_model', array(
                 'class' => 'Letscode\Bundle\MagicBundle\Entity\Color',
@@ -48,26 +55,6 @@ class CardAdmin extends Admin
                 'expanded' => false,
                 'by_reference' => false,
                 'multiple' => true
-            )
-        )
-        ->add(
-            'attributes', 'sonata_type_model', array(
-                'class' => 'Letscode\Bundle\MagicBundle\Entity\Attribute',
-                'property' => 'name',
-                'expanded' => false,
-                'by_reference' => false,
-                'multiple' => true,
-                'required' => false
-            )
-        )
-        ->add(
-            'effects', 'sonata_type_model', array(
-                'class' => 'Letscode\Bundle\MagicBundle\Entity\Effect',
-                'property' => 'name',
-                'expanded' => false,
-                'by_reference' => false,
-                'multiple' => true,
-                'required' => false
             )
         )
         ->add(
@@ -90,7 +77,30 @@ class CardAdmin extends Admin
         )->end()
         ->with('Creature')
             ->add('power', 'integer', array('required' => false))
-            ->add('toughness', 'integer', array('required' => false));
+            ->add('toughness', 'integer', array('required' => false))
+            ->end()
+        ->with('Auto Filled')
+            ->add('convertedManaCost', 'integer', array('required' => false))
+            ->add(
+                'attributes', 'sonata_type_model', array(
+                    'class' => 'Letscode\Bundle\MagicBundle\Entity\Attribute',
+                    'property' => 'name',
+                    'expanded' => false,
+                    'by_reference' => false,
+                    'multiple' => true,
+                    'required' => false
+                )
+            )
+            ->add(
+                'effects', 'sonata_type_model', array(
+                    'class' => 'Letscode\Bundle\MagicBundle\Entity\Effect',
+                    'property' => 'name',
+                    'expanded' => false,
+                    'by_reference' => false,
+                    'multiple' => true,
+                    'required' => false
+                )
+            );
     }
 
     /**
