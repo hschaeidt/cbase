@@ -1,5 +1,3 @@
-# this configuration requires following nixops patch
-# -> https://github.com/NixOS/nixops/pull/602
 let
   cbase =
     { config, pkgs, ... }:
@@ -17,9 +15,14 @@ let
       deployment.virtualbox.sharedFolders = {
         cbase = {
           hostPath = "/Users/hschaeidt/Projects/github/hschaeidt/cbase";
-          targetPath = "/var/www/cbase";
           readOnly = false;
         };
+      };
+
+      fileSystems."/var/www/cbase" = {
+        device = "cbase";
+        fsType = "vboxsf";
+        options = [ "uid=33" "gid=33" ];
       };
     };
 in
