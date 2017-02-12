@@ -14,7 +14,18 @@ only supported on unix systems.
 * [nix - package manager](http://nixos.org/nix/)
 * [nixops](http://nixos.org/nixops/)
 
-```
+### Important note
+nixops might not work out of the box after a fresh virtualbox install. if that is the case please check following:
+
+* in virtualbox open general settings
+* navigate to "Network" section
+* in "Network" switch to "Host-only Networks" tab
+* if no network with the name "vboxnet0" exists, create one
+
+Now the deployment to virtualbox should work properly.
+For more information please refer to the [nixops documentation](http://nixos.org/nixops/manual/#idm140737319345872)
+
+```bash
 # ./cbase
 nixops create -d cbase ./server/cbase-vbox.nix ./server/cbase.nix
 nixops deploy -d cbase
@@ -22,7 +33,7 @@ nixops deploy -d cbase
 
 Now a few manual steps have to be done
 
-```
+```bash
 # connect to virtual-machine
 nixops ssh -d cbase cbase
 
@@ -46,7 +57,7 @@ php app/console fos:user:create --super-admin
 
 Now the app is ready to be hacked, to navigate to it find out the machines ip address.
 
-```
+```bash
 nixops info -d cbase
 # +-------+-----------------------+------------+---------------------------------------------------+----------------+
 # | Name  |         Status        | Type       | Resource Id                                       | IP address     |
