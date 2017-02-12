@@ -6,27 +6,28 @@ ORM.
 
 The database is empty by default right now.
 
-## Local development
-To get started quickly with this repo you need following tool
+## Hacking
+[vagrant](https://www.vagrantup.com/) is replaced by [nixops](http://nixos.org/nixops/). With this development is currently
+only supported on unix systems.
 
-* vagrant
-* `vagrant plugin install vagrant-hostmanager`
-* `vagrant plugin install vagrant-vbguest`
-* `vagrant plugin install vagrant-cachier`
-* `vagrant plugin install vagrant-proxyconf`
-
-Clone this repository, navigate to the local repo folder, then
+* [virtualbox](https://www.virtualbox.org/)
+* [nix - package manager](http://nixos.org/nix/)
+* [nixops](http://nixos.org/nixops/)
 
 ```
-# ~/git/cbase/
-vagrant up
+# ./cbase
+nixops create -d cbase ./server/cbase-vbox.nix ./server/cbase.nix
+nixops deploy -d cbase
 ```
 
 Now a few manual steps have to be done
 
 ```
 # connect to virtual-machine
-vagrant ssh
+nixops ssh -d cbase cbase
+
+# change to www-data user before installing dependencies
+su - www-data
 
 # navigate to application base directory
 cd /var/www/cbase
@@ -43,4 +44,15 @@ php app/console doctrine:schema:create
 php app/console fos:user:create --super-admin
 ```
 
-Now cbase is available under http://cbase.dev/admin
+Now the app is ready to be hacked, to navigate to it find out the machines ip address.
+
+```
+nixops info -d cbase
+# +-------+-----------------------+------------+---------------------------------------------------+----------------+
+# | Name  |         Status        | Type       | Resource Id                                       | IP address     |
+# +-------+-----------------------+------------+---------------------------------------------------+----------------+
+# | cbase | Starting / Up-to-date | virtualbox | nixops-ca4b72de-ef9b-11e6-b02e-acbc327d8789-cbase | 192.168.56.101 |
+# +-------+-----------------------+------------+---------------------------------------------------+----------------+
+```
+
+Now cbase is available under http://192.168.56.101/admin
