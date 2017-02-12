@@ -16,6 +16,7 @@
     environment.systemPackages = [
       pkgs.ag
       pkgs.vim
+      pkgs.php
       pkgs.phpPackages.composer
     ];
 
